@@ -1,0 +1,59 @@
+﻿@model List<MovieBookingAppDemo.Models.BookingSummary>
+
+    <!--Search Bar-->
+<form method="get">
+    <h5> Search by Booking ID or Event Name</h5>
+
+    <div class="input-group">
+            <input type="text" name="search" placeholder="Enter bookingID or Movie name" class="form-control" />
+            <!--Search must parameter in the controller-->
+
+            <button type="submit" class="btn btn-success">Search</button>
+
+    </div> <!--Div is a section of code-->
+
+</form>
+
+<!-- Bootstrap styling:
+    Form-control: makes the input box look full-width, and consistent >>> search bar is stretched across
+    btn btn-success: style the button with green colour (success is a built in colour for green)
+    input-group: places the input and button next to each other in one line
+    placeholder: shows a hint inside the input to guide the user on what to type
+-->
+
+<hr /> <!--Header rule-->
+<!--Code required to format your table-->
+<table class="table table-striped table-bordered table-hover"> <!--table table refers to a nested table (1 table element inside a cell of another table, -->
+
+    <thead class="table-success">
+        <tr> <!-- Table row-->
+            <th>Booking ID</th> <!--Table heading/header-->
+            <th>Movie Name</th>
+            <th>Genre</th>
+            <th>Cinema</th>
+            <th>Location</th>
+            <th>Date</th>
+        </tr>
+
+    </thead>
+
+    <tbody> <!--Refers to everything in the table-->
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BookingId</td> <!--Table display, everythign except the heading-->
+                <td>@item.MovieTitle</td>
+                <td>@item.MovieGenre</td>
+                <td>@item.CinemaName</td>
+                <td>@item.CinemaLocation</td>
+                <td>@item.BookingDate</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+
+
+

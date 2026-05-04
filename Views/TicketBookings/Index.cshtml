@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MovieBookingAppDemo.Models.TicketBooking>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cinema)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie.MovieId) <!--If you want to display movie title/name add it to the model 1st-->
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cinema.CinemaId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TicketBookingId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TicketBookingId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TicketBookingId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

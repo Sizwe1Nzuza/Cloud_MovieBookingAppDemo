@@ -1,0 +1,66 @@
+﻿@model MovieBookingAppDemo.Models.TicketBooking
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@* Will call error message from controller and display it *@
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger"> <!--Alert message, will highlight the block with the issue-->
+        @TempData["Error"]
+    </div>
+}
+
+
+<h1>Create</h1>
+
+<h4>TicketBooking</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @* 
+We only have these 2 because we don't want the user to know and enter the IDs, just the titles, and
+the controller will handle figuring out what title matches the ID'
+
+            *@
+            @* <div class="form-group">
+                <label>Movie Title</label>
+                <input type="text" name="MovieTitle" class="form-control"/>
+            </div> *@
+            @* <div class="form-group">
+                <label asp-for="ShowDate"></label>
+                <input asp-for="ShowDate" class="form-control" />
+            </div> *@
+    
+
+            <div class="form-group">
+                <label asp-for="MovieId" class="control-label"></label>
+                <select asp-for="MovieId" class ="form-control" asp-items="ViewBag.MovieId"></select>
+            </div> 
+             <div class="form-group">
+                <label asp-for="CinemaId" class="control-label"></label>
+                <select asp-for="CinemaId" class ="form-control" asp-items="ViewBag.CinemaId"></select>
+            </div> 
+             <div class="form-group">
+                <label asp-for="ShowDate" class="control-label"></label>
+                <input asp-for="ShowDate" class="form-control" />
+                <span asp-validation-for="ShowDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
